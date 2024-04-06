@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>input 标签</title>
+		<script>
+			window.onload = function(){
+				var oBtn = document.getElementById("normal");
+				console.log(oBtn);
+				oBtn.onclick = function(){
+					alert("I ❤️ HTML!")
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<form method="post">
+			<!-- input 标签共有这几种类型：单行文本框、密码文本框、 单选框、复选框、按钮（普通、提交、重置）、文件上传-->
+			单选框: <input type="text" size="30"><br/>
+			单选框: <input type="text" size="20" maxlength="5"/><br/><br/>
+			密码文本框: <input type="password" /><br/>
+			单选框: <input type="radio" name="sex" value="男" checked/> 男 <input type="radio" name="sex" value="女"/> 女<br/>
+			复选框: <input type="checkbox" name="interest" value="旅游" checked/>旅游 <input type="checkbox" name="interest" value="运动"/> 运动<br/>
+			按钮: <input id="normal" type="button" value="普通按钮"/> <input type="submit" value="提交按钮"/> <input type="reset" value="重置按钮"/><br/>
+			文件上传: <input type="file"/>
+		</form>
+	</body>
+</html>
