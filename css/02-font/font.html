@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>字体样式</title>
+		<style type="text/css">
+			/* 字体样式共有五类 */
+			/* 第一类: 字体类型 font-family */
+			/* 第二类: 字体大小 font-size */
+			/* 第三类: 字体粗细 font-weight */
+			/* 第四类: 字体风格 font-style */
+			/* 第五类: 字体颜色 color */
+			#group1 {
+				font-family: "微软雅黑", "苹方", "Times New Roman", Arial, Verdana, Geneva, Tahoma, sans-serif;
+			}
+
+			#group2 {
+				/* 字体表示方式二：px */
+				font-size: 50px;
+			}
+
+			#group3 {
+				/* 字体表示方式二：small、medium、large 关键字 */
+				font-size: large;
+			}
+
+			#group4 {
+				/* 字体粗细表示方式一：数值 */
+				font-weight: 900;
+			}
+			#group5{
+				/* 字体粗细表示方式二：关键字（100>lighter 400>normal 700>bold 900>bolder） */
+				font-weight: bolder;
+			}
+			#group6{
+				/* 字体风格：normal 正常；italic 和 oblique 都表示斜体（区别在于有些字体类型只包含 italic，有些字体类型只包含 oblique） */
+				font-style: oblique;
+			}
+			#group7{
+				/* 字体颜色表示方式有两种：关键字 and RGB，在 css3 中有更多，这里先不了解，前面两种足以够用 */
+				color: blue;
+			}
+			#group8{
+				color: rgb(234, 92, 20, 1);
+			}
+		</style>
+	</head>
+	<body>
+		<div id="group1">小张的编程笔记屋</div>
+		<div id="group2">小张的编程笔记屋(字体大小 50px)</div>
+		<div id="group3">小张的编程笔记屋(字体大小 large)</div>
+		<div id="group4">小张的编程笔记屋</div>
+		<div id="group5">小张的编程笔记屋</div>
+		<div id="group6">小张的编程笔记屋</div>
+		<div id="group7">小张的编程笔记屋</div>
+		<div id="group8">小张的编程笔记屋</div>
+	</body>
+</html>
