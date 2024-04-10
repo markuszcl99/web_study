@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>文本样式示例</title>
+		<style type="text/css">
+			/* 文本样式内容如下： */
+			/* 1. 首行缩进 text-indent  */
+			/* 2. 水平对齐 text-align (注意 对齐方式仅是针对块元素，不针对行内元素) */
+			/* 3. 文本修饰 text-decoration */
+			/* 4. 大小写转换 text-transform 针对英文文本*/
+			/* 5. 行高 line-heigh */
+			/* 6. 字母间距、词间距 letter-sapcing word-spacing (一般不用，只用做了解，针对英文文本) */
+			p {
+				text-indent: 28px;
+				font-size: 14px;
+			}
+
+			#p1 {
+				text-align: left;
+			}
+
+			#p2 {
+				text-align: center;
+			}
+
+			#p3 {
+				text-align: right;
+			}
+
+			#div1 {
+				text-align: right;
+			}
+
+			#p4 {
+				text-decoration: none;
+			}
+
+			#p5 {
+				text-decoration: underline;
+			}
+
+			#p6 {
+				text-decoration: line-through;
+			}
+
+			#p7 {
+				text-decoration: overline;
+			}
+
+			#p8 {
+				text-transform: uppercase;
+			}
+
+			#p9 {
+				text-transform: lowercase;
+			}
+
+			#p10 {
+				line-height: 30px;
+			}
+
+			#p11 {
+				line-height: 50px;
+			}
+		</style>
+	</head>
+	<body>
+		<p>中国台湾网4月10日讯 国务院台湾事务办公室今天上午举行例行新闻发布会，国台办发言人朱凤莲主持本次新闻发布会。</p>
+		<p>台湾《中国时报》记者：习近平总书记在中美元首通话中强调“对于‘台独’势力分裂活动和外部纵容支持，我们不会听之任之”，“美国在台协会（AIT）”主席罗森伯格访台时表示希望“维持现状”，马英九此次赴大陆参访定位“和平之旅”，台有关方面取消金门实弹射击。有舆论认为，从这些事件来看，意味着中美在共同管控台海形势。对此有何评论？
+		</p>
+		<p id="p1">水平对齐方式: 这是左对齐</p><br />
+		<p id="p2">水平对齐方式: 这是居中对齐</p><br />
+		<p id="p3">水平对齐方式: 这是右对齐</p><br />
+		<div id="div1">对齐方式: div 左对齐</div>
+
+		<p id="p4">文本修饰: 无样式</p>
+		<p id="p5">文本修饰: 下划线</p>
+		<p id="p6">文本修饰: 中划线</p>
+		<p id="p7">文本修饰: 上划线</p>
+		<p id="p8">小写转大写: no pain, no gain</p>
+		<p id="p9">大写转小写: NO PAIN, NO GAIN</p>
+
+		<p id="p10">行高: 30px |
+			台湾《中国时报》记者：习近平总书记在中美元首通话中强调“对于‘台独’势力分裂活动和外部纵容支持，我们不会听之任之”，“美国在台协会（AIT）”主席罗森伯格访台时表示希望“维持现状”，马英九此次赴大陆参访定位“和平之旅”，台有关方面取消金门实弹射击。有舆论认为，从这些事件来看，意味着中美在共同管控台海形势。对此有何评论？
+		</p>
+		<p id="p11">行高: 50px |
+			台湾《中国时报》记者：习近平总书记在中美元首通话中强调“对于‘台独’势力分裂活动和外部纵容支持，我们不会听之任之”，“美国在台协会（AIT）”主席罗森伯格访台时表示希望“维持现状”，马英九此次赴大陆参访定位“和平之旅”，台有关方面取消金门实弹射击。有舆论认为，从这些事件来看，意味着中美在共同管控台海形势。对此有何评论？
+		</p>
+	</body>
+</html>
