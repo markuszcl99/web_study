@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>表格样式</title>
+		<style type="text/css">
+			table,th,td {
+				/* border 三要素: 宽度 样式 颜色 */
+				border: 1px solid silver;
+			}
+			/* 表格样式属性共有以下三种 */
+			/* 第一种: caption-side: top or bottom */
+			#table1 {
+				caption-side: bottom;
+			}
+			
+			/* 第二种:  border-collapse: separate(default 边框拆分，有空隙) or collapse (边框合并，无空隙) */
+			#table2 {
+				border-collapse: collapse;
+			}
+			/* 第三种: border-spacing: 10px (边框间距，value 为像素值) */
+			#table3{
+				border-spacing: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<table id="table1">
+				<caption>表格标题</caption>
+				<!-- 表头 -->
+				<thead>
+					<tr>
+						<th>表头单元格1</th>
+						<th>表头单元格2</th>
+					</tr>
+				</thead>
+				<!-- 表身 -->
+				<tbody>
+					<tr>
+						<td>表行单元格1</td>
+						<td>表行单元格2</td>
+					</tr>
+					<tr>
+						<td>表行单元格3</td>
+						<td>表行单元格4</td>
+					</tr>
+				</tbody>
+				<!-- 表尾 -->
+				<tfoot>
+					<tr>
+						<td>表行单元格5</td>
+						<td>表行单元格6</td>
+					</tr>
+				</tfoot>
+			</table>
+		</div>
+		<br/>
+		<div>
+			<table id="table2">
+				<caption>表格标题</caption>
+				<!-- 表头 -->
+				<thead>
+					<tr>
+						<th>表头单元格1</th>
+						<th>表头单元格2</th>
+					</tr>
+				</thead>
+				<!-- 表身 -->
+				<tbody>
+					<tr>
+						<td>表行单元格1</td>
+						<td>表行单元格2</td>
+					</tr>
+					<tr>
+						<td>表行单元格3</td>
+						<td>表行单元格4</td>
+					</tr>
+				</tbody>
+				<!-- 表尾 -->
+				<tfoot>
+					<tr>
+						<td>表行单元格5</td>
+						<td>表行单元格6</td>
+					</tr>
+				</tfoot>
+			</table>
+		</div>
+		<br/>
+		<div>
+			<table id="table3">
+				<caption>表格标题</caption>
+				<!-- 表头 -->
+				<thead>
+					<tr>
+						<th>表头单元格1</th>
+						<th>表头单元格2</th>
+					</tr>
+				</thead>
+				<!-- 表身 -->
+				<tbody>
+					<tr>
+						<td>表行单元格1</td>
+						<td>表行单元格2</td>
+					</tr>
+					<tr>
+						<td>表行单元格3</td>
+						<td>表行单元格4</td>
+					</tr>
+				</tbody>
+				<!-- 表尾 -->
+				<tfoot>
+					<tr>
+						<td>表行单元格5</td>
+						<td>表行单元格6</td>
+					</tr>
+				</tfoot>
+			</table>
+		</div>
+	</body>
+</html>
