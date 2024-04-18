@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>图片样式</title>
+		<!-- 图片样式由以下几种常用的 -->
+		<!-- 第一种: 图片大小，宽度和高度 -->
+		<!-- 第二种: 图片边框 border -->
+		<!-- 第三种: 图片水平对齐 text-align -->
+		<!-- 第四种: 图片垂直对齐 vertical-align -->
+		<!-- 第五种: 图片环绕 float -->
+		<style type="text/css">
+			img {
+				width: 100px;
+				height: 70px;
+			}
+
+			div {
+				width: 500px;
+				height: 80px;
+				margin-top: 100px;
+			}
+
+			.div1 {
+				width: 100px;
+				height: 80px;
+				border: 2px solid silver;
+			}
+
+			.div2 {
+				border: 1px solid silver;
+				text-align: left;
+			}
+			
+			.div3 {
+				border: 1px solid silver;
+				text-align: center;
+			}
+			
+			.div4 {
+				border: 1px solid silver;
+				text-align: right;
+			}
+			
+			#img1 {
+				vertical-align: top;
+			}
+			#img2 {
+				vertical-align: baseline;
+			}
+			#img3 {
+				vertical-align: middle;
+			}
+			#img4 {
+				vertical-align: bottom;
+			}
+		</style>
+	</head>
+	<body>
+		<img src="../../html/04-img/backgroud.png">
+
+		<div class="div1">
+			<img src="../../html/04-img/backgroud.png">
+		</div>
+
+		<div class="div2">
+			<img src="../../html/04-img/backgroud.png">
+		</div>
+
+		<div class="div3">
+			<img src="../../html/04-img/backgroud.png">
+		</div>
+		
+		<div class="div4">
+			<img src="../../html/04-img/backgroud.png">
+		</div>
+		
+		<div>
+			小张的编程笔记<img id="img1" src="../../html/04-img/backgroud.png">小张的编程笔记
+		</div>
+		<div>
+			小张的编程笔记<img id="img2" src="../../html/04-img/backgroud.png">小张的编程笔记
+		</div>
+		<div>
+			小张的编程笔记<img id="img3" src="../../html/04-img/backgroud.png">小张的编程笔记
+		</div>
+		<div>
+			小张的编程笔记<img id="img4" src="../../html/04-img/backgroud.png">小张的编程笔记
+		</div>
+		
+		<div>
+			<img style="float: left;" src="../../html/04-img/backgroud.png"/>
+			<p>Spring 框架中的各个组件（如控制器、服务、数据访问对象等）都遵循了单一职责原则，每个组件都专注于执行特定的任务，从而提高了代码的内聚性和可维护性。Spring框架通过面向接口编程和依赖注入等机制，实现了对扩展的开放和对修改的封闭。框架的核心功能可以在不修改原有代码的情况下进行扩展和定制，从而提高了系统的可扩展性和灵活性。</p>
+		</div>
+		
+		<div>
+			<img style="float: right;" src="../../html/04-img/backgroud.png"/>
+			<p>Spring 框架中的各个组件（如控制器、服务、数据访问对象等）都遵循了单一职责原则，每个组件都专注于执行特定的任务，从而提高了代码的内聚性和可维护性。Spring框架通过面向接口编程和依赖注入等机制，实现了对扩展的开放和对修改的封闭。框架的核心功能可以在不修改原有代码的情况下进行扩展和定制，从而提高了系统的可扩展性和灵活性。</p>
+		</div>
+		
+	</body>
+</html>
