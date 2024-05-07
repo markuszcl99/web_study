@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>超链接样式作业</title>
+		<style type="text/css">
+			a: {
+				color: red;
+				text-decoration: none;
+			}
+
+			/* :hover 伪类可以应用于任何一个元素 */
+			a:hover {
+				color: blue;
+				text-decoration: underline;
+			}
+
+			img:hover {
+				border: 4px solid red;
+				width: 200px;
+				height: 200px;
+			}
+
+			div {
+				width: 100px;
+				height: 30px;
+				line-height: 30px;
+				text-align: center;
+				background-color: hotpink;
+				color: white;
+				font-size: 14px;
+			}
+
+			/* 鼠标样式(最常用的就是这三个 default、pointer、text) 还可以定制，语法为 cursor: url(xxx),属性值 */
+			.div_default {
+				cursor: default;
+			}
+
+			.div_pointer {
+				cursor: pointer;
+			}
+			
+			.div_text{
+				cursor: text;
+			}
+			
+		</style>
+	</head>
+	<body>
+
+		<a href="https://www.markuszhang.com" target="_blank">小张的编程笔记</a>
+		<br />
+		<br />
+		<br />
+		<img src="pic.png" />
+
+		<br />
+		<br />
+		<br />
+		<div class="div_default">
+			鼠标样式
+		</div>
+		<br />
+		<br />
+		<br />
+
+		<div class="div_pointer">
+			鼠标样式
+		</div>
+		</div>
+		<br />
+		<br />
+		<br />
+		<div class="div_text">
+			鼠标样式
+		</div>
+	</body>
+</html>
