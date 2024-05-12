@@ -42,3 +42,5 @@ npm install --save-dev @types/node
 - 简单命令行使用，和 VSCode 的简单配置
   - tsc、npm、npx、node
 - 基本类型概念：类型安全、类型标注、类型推断、强类型、类型检查等
+
+ps: npx 是 node.js 中提供的一个工具，用于执行 node.js 包中的可执行文件
