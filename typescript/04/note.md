@@ -7,3 +7,7 @@
 ![](https://img.markuszhang.com/img/20240512175258.png)
 
 ![](https://img.markuszhang.com/img/20240512175547.png) ![](https://img.markuszhang.com/img/20240512175613.png) ![](https://img.markuszhang.com/img/20240512175644.png)
+
+## TypeScript 类型系统全景图
+
+![](https://img.markuszhang.com/img/20240513225514.png)
