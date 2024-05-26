@@ -64,3 +64,5 @@ function Y(a: any): asserts a is number{
 s2 = 'a';
 Y(s2); // 断言通过
 s1 = s2;
+
+// 可辨识联合类型 被辨识的成员值一定是唯一的 
