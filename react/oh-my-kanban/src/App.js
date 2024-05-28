@@ -31,26 +31,44 @@ const KanbanNewCard = ({ onSubmit }) => {
     </li>
   )
 }
+
+const KanbanBoard = ({ children }) => {
+  return (
+    <main className="kanban-board">
+      {children}
+    </main>
+  );
+}
+
+const KanbanColumn = ({ children, className }) => {
+  const combineClassName = `kanban-column ${className}`;
+  return (
+    <section className={combineClassName}>
+      {children}
+    </section>
+  )
+}
+
 function App() {
   const [showAdd, setShowAdd] = useState(false);
-  const [showDoingAdd,setShowDoingAdd] = useState(false);
-  const [showDoneAdd,setShowDoneAdd] = useState(false);
+  const [showDoingAdd, setShowDoingAdd] = useState(false);
+  const [showDoneAdd, setShowDoneAdd] = useState(false);
   const [todoList, setTodoList] = useState([{ title: '开发任务-1', status: '2024-05-26 22:43' }, { title: '开发任务-3', status: '2024-05-26 22:43' }, { title: '开发任务-5', status: '2024-05-26 22:43' }, { title: '测试任务-3', status: '2024-05-26 22:43' }]);
-  const [doingList,setDoingList] = useState([{ title: '开发任务-4', status: '2024-05-26 22:43' }, { title: '开发任务-6', status: '2024-05-26 22:43' }, { title: '测试任务-2', status: '2024-05-26 22:43' }]);
-  const [doneList,setDoneList] = useState([{ title: '开发任务-2', status: '2024-05-26 22:43' }, { title: '测试任务-1', status: '2024-05-26 22:43' }]);
+  const [doingList, setDoingList] = useState([{ title: '开发任务-4', status: '2024-05-26 22:43' }, { title: '开发任务-6', status: '2024-05-26 22:43' }, { title: '测试任务-2', status: '2024-05-26 22:43' }]);
+  const [doneList, setDoneList] = useState([{ title: '开发任务-2', status: '2024-05-26 22:43' }, { title: '测试任务-1', status: '2024-05-26 22:43' }]);
   // const handleAdd = (evt) => {
   //   setShowAdd(true);
   // };
 
-  const handleAdd = (evt,targetMethod: setShowAdd | setShowDoingAdd | setShowDoneAdd) => {
+  const handleAdd = (evt, targetMethod: setShowAdd | setShowDoingAdd | setShowDoneAdd) => {
     targetMethod(true);
   }
 
-  const handleSubmit = (title,setList,setShow) => {
+  const handleSubmit = (title, setList, setShow) => {
     // 这里为什么不用 unshift 函数，后面课程会提及，这里记一个 TODO
     // todoList.unshift({ title, status: new Date().toDateString() });
     setList(currentTodoList => [
-      {title,status: new Date().toDateString()},
+      { title, status: new Date().toDateString() },
       ...currentTodoList
     ]);
     setShow(false);
@@ -62,41 +80,41 @@ function App() {
         <h1>我的看板</h1>
         <img src={logo} className="App-logo" alt="logo" />
       </header>
-      <main className="kanban-board">
-        <section className="kanban-column column-todo">
-          <h2>待处理<button onClick={(evt) => handleAdd(evt,setShowAdd)} disabled={showAdd}>&#8853; 添加新卡片</button></h2>
+      <KanbanBoard>
+        <KanbanColumn className="column-todo">
+          <h2>待处理<button onClick={(evt) => handleAdd(evt, setShowAdd)} disabled={showAdd}>&#8853; 添加新卡片</button></h2>
           <ul>
             {
-              showAdd && <KanbanNewCard onSubmit={(title) => handleSubmit(title,setTodoList,setShowAdd)} />
+              showAdd && <KanbanNewCard onSubmit={(title) => handleSubmit(title, setTodoList, setShowAdd)} />
             }
             {
               todoList.map(props => <KanbanCard {...props} />)
             }
           </ul>
-        </section>
-        <section className="kanban-column column-doing">
-          <h2>进行中<button onClick={(evt) => handleAdd(evt,setShowDoingAdd)} disabled={showDoingAdd}>&#8853; 添加新卡片</button></h2>
+        </KanbanColumn>
+        <KanbanColumn className="column-doing">
+          <h2>进行中<button onClick={(evt) => handleAdd(evt, setShowDoingAdd)} disabled={showDoingAdd}>&#8853; 添加新卡片</button></h2>
           <ul>
             {
-              showDoingAdd && <KanbanNewCard onSubmit={(title) => handleSubmit(title,setDoingList,setShowDoingAdd)} />
+              showDoingAdd && <KanbanNewCard onSubmit={(title) => handleSubmit(title, setDoingList, setShowDoingAdd)} />
             }
             {
               doingList.map(props => <KanbanCard {...props} />)
             }
           </ul>
-        </section>
-        <section className="kanban-column column-done">
-          <h2>已完成<button onClick={(evt) => handleAdd(evt,setShowDoneAdd)} disabled={showDoneAdd}>&#8853; 添加新卡片</button></h2>
+        </KanbanColumn>
+        <KanbanColumn className="column-done">
+          <h2>已完成<button onClick={(evt) => handleAdd(evt, setShowDoneAdd)} disabled={showDoneAdd}>&#8853; 添加新卡片</button></h2>
           <ul>
             {
-              showDoneAdd && <KanbanNewCard onSubmit={(title) => handleSubmit(title,setDoneList,setShowDoneAdd)} />
+              showDoneAdd && <KanbanNewCard onSubmit={(title) => handleSubmit(title, setDoneList, setShowDoneAdd)} />
             }
             {
               doneList.map(props => <KanbanCard {...props} />)
             }
           </ul>
-        </section>
-      </main>
+        </KanbanColumn>
+      </KanbanBoard>
     </div>
   );
 }
