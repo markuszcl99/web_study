@@ -2,6 +2,8 @@ import logo from './logo.svg';
 import './App.css';
 import { useState } from 'react';
 
+// note: 
+// 1. 拆分组件的基本原则：（1）单一职责 （2）关注点分离 （3）一次且仅一次 （4）简约
 const KanbanCard = ({ title, status }) => {
   return (
     <li className="kanban-card">
@@ -40,11 +42,14 @@ const KanbanBoard = ({ children }) => {
   );
 }
 
-const KanbanColumn = ({ children, className }) => {
+const KanbanColumn = ({ children, className, title, handleAdd,setShowAdd, showAdd }) => {
   const combineClassName = `kanban-column ${className}`;
   return (
     <section className={combineClassName}>
-      {children}
+      <h2>{title}<button onClick={(evt) => handleAdd(evt, setShowAdd)} disabled={showAdd}>&#8853; 添加新卡片</button></h2>
+      <ul>
+        {children}
+      </ul>
     </section>
   )
 }
@@ -81,38 +86,29 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
       </header>
       <KanbanBoard>
-        <KanbanColumn className="column-todo">
-          <h2>待处理<button onClick={(evt) => handleAdd(evt, setShowAdd)} disabled={showAdd}>&#8853; 添加新卡片</button></h2>
-          <ul>
+        <KanbanColumn className="column-todo" title="待处理" handleAdd={handleAdd} setShowAdd={setShowAdd} showAdd={showAdd}>
             {
               showAdd && <KanbanNewCard onSubmit={(title) => handleSubmit(title, setTodoList, setShowAdd)} />
             }
             {
               todoList.map(props => <KanbanCard {...props} />)
             }
-          </ul>
         </KanbanColumn>
-        <KanbanColumn className="column-doing">
-          <h2>进行中<button onClick={(evt) => handleAdd(evt, setShowDoingAdd)} disabled={showDoingAdd}>&#8853; 添加新卡片</button></h2>
-          <ul>
+        <KanbanColumn className="column-doing" title="进行中" handleAdd={handleAdd} setShowAdd={setShowDoingAdd} showAdd={showDoingAdd}>
             {
               showDoingAdd && <KanbanNewCard onSubmit={(title) => handleSubmit(title, setDoingList, setShowDoingAdd)} />
             }
             {
               doingList.map(props => <KanbanCard {...props} />)
             }
-          </ul>
         </KanbanColumn>
-        <KanbanColumn className="column-done">
-          <h2>已完成<button onClick={(evt) => handleAdd(evt, setShowDoneAdd)} disabled={showDoneAdd}>&#8853; 添加新卡片</button></h2>
-          <ul>
+        <KanbanColumn className="column-done" title="进行中" handleAdd={handleAdd} setShowAdd={setShowDoneAdd} showAdd={showDoneAdd}>
             {
               showDoneAdd && <KanbanNewCard onSubmit={(title) => handleSubmit(title, setDoneList, setShowDoneAdd)} />
             }
             {
               doneList.map(props => <KanbanCard {...props} />)
             }
-          </ul>
         </KanbanColumn>
       </KanbanBoard>
     </div>
