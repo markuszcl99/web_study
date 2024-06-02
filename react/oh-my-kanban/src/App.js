@@ -1,24 +1,35 @@
+
 import logo from './logo.svg';
 import './App.css';
-import { useState } from 'react';
+import { useState,useRef, useEffect } from 'react';
 
 // note: 
 // 1. 拆分组件的基本原则：（1）单一职责 （2）关注点分离 （3）一次且仅一次 （4）简约
 const KanbanCard = ({ title, status }) => {
   return (
-    <li className="kanban-card">
-      <div className="card-title">{title}</div>
-      <div className="card-status">{status}</div>
-    </li>
+    <div className="kanban-card">
+      <li>
+        <div className="card-title">{title}</div>
+        <div className="card-status">{status}</div>
+      </li>
+    </div>
   )
 };
 const KanbanNewCard = ({ onSubmit }) => {
   const [title, setTitle] = useState('');
+  // useRef 构建函数返回的值是可变的，我们知道 state props 是不可变的
+  const inputElement = useRef(null);
+
+  // useEffect(callbackFunc,[]) 仅在组件挂载时执行一遍
+  useEffect(()=>{
+    inputElement.current.focus();
+  },[]);
+
   const handleChange = (evt) => {
     setTitle(evt.target.value);
   };
   const handleKeyDown = (evt) => {
-    if (evt.key == 'Enter') {
+    if (evt.key === 'Enter') {
       console.log(123);
       onSubmit(title);
     }
@@ -28,7 +39,7 @@ const KanbanNewCard = ({ onSubmit }) => {
     <li className="kanban-card">
       <h3>添加新卡片</h3>
       <div className="card-title">
-        <input type="text" value={title} onChange={handleChange} onKeyDown={handleKeyDown} />
+        <input type="text" value={title} ref={inputElement} onChange={handleChange} onKeyDown={handleKeyDown} />
       </div>
     </li>
   )
@@ -42,7 +53,7 @@ const KanbanBoard = ({ children }) => {
   );
 }
 
-const KanbanColumn = ({ children, className, title, handleAdd,setShowAdd, showAdd }) => {
+const KanbanColumn = ({ children, className, title, handleAdd, setShowAdd, showAdd }) => {
   const combineClassName = `kanban-column ${className}`;
   return (
     <section className={combineClassName}>
@@ -87,28 +98,28 @@ function App() {
       </header>
       <KanbanBoard>
         <KanbanColumn className="column-todo" title="待处理" handleAdd={handleAdd} setShowAdd={setShowAdd} showAdd={showAdd}>
-            {
-              showAdd && <KanbanNewCard onSubmit={(title) => handleSubmit(title, setTodoList, setShowAdd)} />
-            }
-            {
-              todoList.map(props => <KanbanCard {...props} />)
-            }
+          {
+            showAdd && <KanbanNewCard onSubmit={(title) => handleSubmit(title, setTodoList, setShowAdd)} />
+          }
+          {
+            todoList.map(props => <KanbanCard {...props} />)
+          }
         </KanbanColumn>
         <KanbanColumn className="column-doing" title="进行中" handleAdd={handleAdd} setShowAdd={setShowDoingAdd} showAdd={showDoingAdd}>
-            {
-              showDoingAdd && <KanbanNewCard onSubmit={(title) => handleSubmit(title, setDoingList, setShowDoingAdd)} />
-            }
-            {
-              doingList.map(props => <KanbanCard {...props} />)
-            }
+          {
+            showDoingAdd && <KanbanNewCard onSubmit={(title) => handleSubmit(title, setDoingList, setShowDoingAdd)} />
+          }
+          {
+            doingList.map(props => <KanbanCard {...props} />)
+          }
         </KanbanColumn>
         <KanbanColumn className="column-done" title="进行中" handleAdd={handleAdd} setShowAdd={setShowDoneAdd} showAdd={showDoneAdd}>
-            {
-              showDoneAdd && <KanbanNewCard onSubmit={(title) => handleSubmit(title, setDoneList, setShowDoneAdd)} />
-            }
-            {
-              doneList.map(props => <KanbanCard {...props} />)
-            }
+          {
+            showDoneAdd && <KanbanNewCard onSubmit={(title) => handleSubmit(title, setDoneList, setShowDoneAdd)} />
+          }
+          {
+            doneList.map(props => <KanbanCard {...props} />)
+          }
         </KanbanColumn>
       </KanbanBoard>
     </div>
