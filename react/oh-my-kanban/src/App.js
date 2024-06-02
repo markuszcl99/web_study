@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import { useState, useRef, useEffect } from 'react';
 
+const DATA_STORE_KEY = 'kanban-data-store';
 const MINUTE = 60 * 1000;
 const HOUR = 60 * MINUTE;
 const DAY = 24 * HOUR;
@@ -31,7 +32,7 @@ const KanbanCard = ({ title, status }) => {
     const intervalId = setInterval(updateDisplayTime, UPDATE_INTERVAL);
     updateDisplayTime();
 
-    // 返回清除函数，卸载时调用
+    // 返回清除函数，组件在下一次提交阶段执行同一个副作用回调函数之前，或者是组件即将被卸载之前，会调用这个清除函数。
     return function cleanup() { clearInterval(intervalId); };
   }, [status]);
 
@@ -106,9 +107,30 @@ function App() {
   const [todoList, setTodoList] = useState([{ title: '开发任务-1', status: '2024-05-26 22:43' }, { title: '开发任务-3', status: '2024-05-26 22:43' }, { title: '开发任务-5', status: '2024-05-26 22:43' }, { title: '测试任务-3', status: '2024-05-26 22:43' }]);
   const [doingList, setDoingList] = useState([{ title: '开发任务-4', status: '2024-05-26 22:43' }, { title: '开发任务-6', status: '2024-05-26 22:43' }, { title: '测试任务-2', status: '2024-05-26 22:43' }]);
   const [doneList, setDoneList] = useState([{ title: '开发任务-2', status: '2024-05-26 22:43' }, { title: '测试任务-1', status: '2024-05-26 22:43' }]);
-  // const handleAdd = (evt) => {
-  //   setShowAdd(true);
-  // };
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // 浏览器内置的本地存储
+    const data = window.localStorage.getItem(DATA_STORE_KEY);
+    setTimeout(() => {
+      if (data) {
+        const kanbanColumnData = JSON.parse(data);
+        setTodoList(kanbanColumnData.todoList);
+        setDoingList(kanbanColumnData.doingList);
+        setDoneList(kanbanColumnData.doneList);
+      }
+      setLoading(false);
+    }, 1000);
+  }, []);
+
+  const handleSaveAll = () => {
+    const data = JSON.stringify({
+      todoList,
+      doingList,
+      doneList
+    });
+    window.localStorage.setItem(DATA_STORE_KEY, data);
+  }
 
   const handleAdd = (evt, targetMethod: setShowAdd | setShowDoingAdd | setShowDoneAdd) => {
     targetMethod(true);
@@ -127,36 +149,43 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>我的看板</h1>
+        <h1>我的看板 <button onClick={handleSaveAll}>保存所有卡片</button></h1>
         <img src={logo} className="App-logo" alt="logo" />
       </header>
       <KanbanBoard>
-        <KanbanColumn className="column-todo" title="待处理" handleAdd={handleAdd} setShowAdd={setShowAdd} showAdd={showAdd}>
-          {
-            showAdd && <KanbanNewCard onSubmit={(title) => handleSubmit(title, setTodoList, setShowAdd)} />
-          }
-          {
-            todoList.map(props => <KanbanCard {...props} />)
-          }
-        </KanbanColumn>
-        <KanbanColumn className="column-doing" title="进行中" handleAdd={handleAdd} setShowAdd={setShowDoingAdd} showAdd={showDoingAdd}>
-          {
-            showDoingAdd && <KanbanNewCard onSubmit={(title) => handleSubmit(title, setDoingList, setShowDoingAdd)} />
-          }
-          {
-            doingList.map(props => <KanbanCard {...props} />)
-          }
-        </KanbanColumn>
-        <KanbanColumn className="column-done" title="进行中" handleAdd={handleAdd} setShowAdd={setShowDoneAdd} showAdd={showDoneAdd}>
-          {
-            showDoneAdd && <KanbanNewCard onSubmit={(title) => handleSubmit(title, setDoneList, setShowDoneAdd)} />
-          }
-          {
-            doneList.map(props => <KanbanCard {...props} />)
-          }
-        </KanbanColumn>
+        {
+          loading ? (
+            <KanbanColumn className="column-loading" title="加载中" />
+          ) : (
+            <>
+              <KanbanColumn className="column-todo" title="待处理" handleAdd={handleAdd} setShowAdd={setShowAdd} showAdd={showAdd}>
+                {
+                  showAdd && <KanbanNewCard onSubmit={(title) => handleSubmit(title, setTodoList, setShowAdd)} />
+                }
+                {
+                  todoList.map(props => <KanbanCard {...props} />)
+                }
+              </KanbanColumn>
+              <KanbanColumn className="column-doing" title="进行中" handleAdd={handleAdd} setShowAdd={setShowDoingAdd} showAdd={showDoingAdd}>
+                {
+                  showDoingAdd && <KanbanNewCard onSubmit={(title) => handleSubmit(title, setDoingList, setShowDoingAdd)} />
+                }
+                {
+                  doingList.map(props => <KanbanCard {...props} />)
+                }
+              </KanbanColumn>
+              <KanbanColumn className="column-done" title="进行中" handleAdd={handleAdd} setShowAdd={setShowDoneAdd} showAdd={showDoneAdd}>
+                {
+                  showDoneAdd && <KanbanNewCard onSubmit={(title) => handleSubmit(title, setDoneList, setShowDoneAdd)} />
+                }
+                {
+                  doneList.map(props => <KanbanCard {...props} />)
+                }
+              </KanbanColumn>
+            </>
+          )}
       </KanbanBoard>
-    </div>
+    </div >
   );
 }
 

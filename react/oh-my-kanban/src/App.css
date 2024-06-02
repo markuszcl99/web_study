@@ -40,6 +40,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -62,13 +63,13 @@
 }
 
 /* kanban-column 直接子元素为 h2 标签的样式 */
-.kanban-column > h2{ 
+.kanban-column>h2 {
   margin: 0.6rem 1rem;
   padding-bottom: 0.6rem;
   border-bottom: 1px solid gray;
 }
 
-.kanban-column > h2 > button {
+.kanban-column>h2>button {
   float: right;
   margin-top: 0.2rem;
   padding: 0.2rem 0.5rem;
@@ -79,7 +80,7 @@
   font-size: 1rem;
 }
 
-.kanban-column > ul{ 
+.kanban-column>ul {
   flex: 1;
   flex-basis: 0;
   margin: 1rem;
@@ -97,8 +98,8 @@
   text-align: left;
 
   /* & 起到的作用就是 联合内部所有的标签，不加的话，就是分开标签 */
-  &:hover{
-    box-shadow: 0 0.2rem 0.2rem rgb(0, 0, 0,0.2), inset 0 1px #fff;
+  &:hover {
+    box-shadow: 0 0.2rem 0.2rem rgb(0, 0, 0, 0.2), inset 0 1px #fff;
   }
 }
 
@@ -106,7 +107,7 @@
   min-height: 3rem;
 }
 
-.card-title > input[type="text"] {
+.card-title>input[type="text"] {
   width: 80%;
 }
 
@@ -116,13 +117,18 @@
   color: #333;
 }
 
-.column-todo{
+.column-todo {
   background-color: #c9af97;
 }
 
-.column-doing{
+.column-doing {
   background-color: #FFE799;
 }
-.column-done{
+
+.column-done {
   background-color: #c0e8ba;
+}
+
+.column-loading {
+  background-color: '#e3e3e3';
 }
