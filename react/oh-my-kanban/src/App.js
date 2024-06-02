@@ -1,18 +1,52 @@
 
 import logo from './logo.svg';
 import './App.css';
-import { useState,useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
+
+const MINUTE = 60 * 1000;
+const HOUR = 60 * MINUTE;
+const DAY = 24 * HOUR;
+const UPDATE_INTERVAL = MINUTE;
 
 // note: 
 // 1. 拆分组件的基本原则：（1）单一职责 （2）关注点分离 （3）一次且仅一次 （4）简约
 const KanbanCard = ({ title, status }) => {
+
+  const [displayTime, setDisplayTime] = useState(status);
+
+  useEffect(() => {
+    const updateDisplayTime = () => {
+      const timePassed = new Date() - new Date(status);
+      let relativeTime = '刚刚';
+      if (MINUTE <= timePassed && timePassed < HOUR) {
+        relativeTime = `${Math.ceil(timePassed / MINUTE)} 分钟前`;
+      } else if (HOUR <= timePassed && timePassed < DAY) {
+        relativeTime = `${Math.ceil(timePassed / HOUR)} 小时前`;
+      } else if (DAY <= timePassed) {
+        relativeTime = `${Math.ceil(timePassed / DAY)} 天前`;
+      }
+      setDisplayTime(relativeTime);
+    }
+    // 添加定时器，每隔 UPDATE_INTERVAL 调用一下回调函数
+    const intervalId = setInterval(updateDisplayTime, UPDATE_INTERVAL);
+    updateDisplayTime();
+
+    // 返回清除函数，卸载时调用
+    return function cleanup() { clearInterval(intervalId); };
+  }, [status]);
+
+
+
+  // start 在这里验证一下函数组件的生命周期
+  // 1. 在大的层面分为两个阶段：渲染阶段 -> 提交阶段
+  // 2. 在组件挂载时：组件函数 => useState、useReducer、useMemo、useCallback
+  // end
+
   return (
-    <div className="kanban-card">
-      <li>
-        <div className="card-title">{title}</div>
-        <div className="card-status">{status}</div>
-      </li>
-    </div>
+    <li className="kanban-card">
+      <div className="card-title">{title}</div>
+      <div className="card-status">{displayTime}</div>
+    </li>
   )
 };
 const KanbanNewCard = ({ onSubmit }) => {
@@ -21,9 +55,9 @@ const KanbanNewCard = ({ onSubmit }) => {
   const inputElement = useRef(null);
 
   // useEffect(callbackFunc,[]) 仅在组件挂载时执行一遍
-  useEffect(()=>{
+  useEffect(() => {
     inputElement.current.focus();
-  },[]);
+  }, []);
 
   const handleChange = (evt) => {
     setTitle(evt.target.value);
@@ -84,7 +118,7 @@ function App() {
     // 这里为什么不用 unshift 函数，后面课程会提及，这里记一个 TODO
     // todoList.unshift({ title, status: new Date().toDateString() });
     setList(currentTodoList => [
-      { title, status: new Date().toDateString() },
+      { title, status: new Date().toLocaleString() },
       ...currentTodoList
     ]);
     setShow(false);

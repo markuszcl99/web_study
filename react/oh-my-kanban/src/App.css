@@ -95,6 +95,11 @@
   list-style: none;
   background-color: rgba(255, 255, 255, 0.4);
   text-align: left;
+
+  /* & 起到的作用就是 联合内部所有的标签，不加的话，就是分开标签 */
+  &:hover{
+    box-shadow: 0 0.2rem 0.2rem rgb(0, 0, 0,0.2), inset 0 1px #fff;
+  }
 }
 
 .card-title {
